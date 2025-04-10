@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { products } from '../data/products';
-import { Product } from '../types';
+import type { Product } from '../types';
 
 interface ProductListProps {
   searchTerm: string;

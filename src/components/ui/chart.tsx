@@ -2,9 +2,6 @@
 
 import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import { Card } from "@/components/ui/card";
-import { themes } from "@/registry/themes";
-
 const data = [
   {
     average: 400,
