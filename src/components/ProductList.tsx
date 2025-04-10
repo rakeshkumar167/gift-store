@@ -10,8 +10,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { products } from '../data/products';
+import { Product } from '../types';
 
-export default function ProductList({ searchTerm }) {
+interface ProductListProps {
+  searchTerm: string;
+}
+
+export default function ProductList({ searchTerm }: ProductListProps) {
   const { addToCart } = useCart();
 
   const filteredProducts = products.filter(product =>

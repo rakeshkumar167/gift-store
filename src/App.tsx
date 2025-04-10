@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { ShoppingCart, Gift, Search, Heart } from 'lucide-react';
+import { ShoppingCart, Gift, Search } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,10 +15,13 @@ import ProductList from './components/ProductList';
 import ProductDetails from './components/ProductDetails';
 import HomePage from './components/HomePage.tsx';
 import { CartProvider, useCart } from './components/CartContext';
+import { Product } from './types';
 
-function Navigation({ searchTerm, setSearchTerm, cart }) {
-  const { removeFromCart } = useCart();
-  
+interface NavigationProps {
+  cart: Product[];
+}
+
+function Navigation({ cart }: NavigationProps) {
   return (
     <nav className="bg-white shadow-sm fixed w-full z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,13 +62,17 @@ function Navigation({ searchTerm, setSearchTerm, cart }) {
   );
 }
 
-function CartContent({ cart }) {
+interface CartContentProps {
+  cart: Product[];
+}
+
+function CartContent({ cart }: CartContentProps) {
   const { removeFromCart } = useCart();
-  const cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
+  const cartTotal = cart.reduce((sum: number, item: Product) => sum + item.price, 0);
 
   return (
     <div className="mt-8">
-      {cart.map((item) => (
+      {cart.map((item: Product) => (
         <div key={item.id} className="flex items-center justify-between py-4 border-b">
           <div className="flex items-center">
             <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
